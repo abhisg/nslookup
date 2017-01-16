@@ -35,6 +35,7 @@ struct DNS_HEADER
 {
 	unsigned short id; 	// identification number
 
+# if __BYTE_ORDER == __LITTLE_ENDIAN
 	unsigned char rd :1; 	// recursion desired
 	unsigned char tc :1; 	// truncated message
 	unsigned char aa :1; 	// authoritive answer
@@ -46,6 +47,20 @@ struct DNS_HEADER
 	unsigned char ad :1; 	// authenticated data
 	unsigned char z :1; 	// reserved and unused
 	unsigned char ra :1; 	// recursion available
+# endif
+# if __BYTE_ORDER == _BIG_ENDIAN
+	unsigned char qr :1;
+	unsigned char opcode :4;
+	unsigned char aa :1;
+	unsigned char tc :1;
+	unsigned char rd :1;
+
+	unsigned char ra :1;
+	unsigned char z :1;
+	unsigned char ad :1;
+	unsigned char cd :1;
+	unsigned char rcode :4;
+# endif
 
 	unsigned short q_count; // number of question entries
 	unsigned short ans_count; // number of answer entries

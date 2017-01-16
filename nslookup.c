@@ -48,7 +48,7 @@ struct DNS_HEADER
 	unsigned char z :1; 	// reserved and unused
 	unsigned char ra :1; 	// recursion available
 # endif
-# if __BYTE_ORDER == _BIG_ENDIAN
+# if __BYTE_ORDER == __BIG_ENDIAN
 	unsigned char qr :1;
 	unsigned char opcode :4;
 	unsigned char aa :1;
